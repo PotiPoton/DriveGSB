@@ -8,24 +8,25 @@ function getFolderStructure($dirPath) {
         if ($item === '.' || $item === '..') continue;
 
         $itemPath = $dirPath . DIRECTORY_SEPARATOR . $item;
+        $info = [
+            'name' => $item,
+            'path' =>realpath($itemPath),
+            'size' => filesize($itemPath),
+            'lastModified' => date('Y-m-d H:i:s', filemtime($itemPath))
+        ];
 
         if (is_dir($itemPath)) {
-            // Ajouter le dossier avec ses enfants
-            $structure[] = [
-                'type' => 'folder',
-                'name' => $item,
-                'path' => $itemPath,
-                'children' => getFolderStructure($itemPath)
-            ];
+            $info['type'] = 'folder';
+            $info['children'] = getFolderStructure($itemPath);
+            $info['size'] = 0;
         } else {
-            // Ajouter le fichier
-            $structure[] = [
-                'type' => 'file',
-                'name' => $item,
-                'path' => $itemPath
-            ];
+            $info['type'] = 'file';
         }
+
+        $structure[] = $info;
     }
+
+
 
     return $structure;
 }
