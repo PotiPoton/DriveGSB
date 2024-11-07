@@ -1,6 +1,11 @@
 function createEntireElement(element, attributes){
     let elm = document.createElement(element);
 
+    console.log(`Création de l'élément : ${element} avec les attributs : ${attributes}`);
+
+    if (attributes === undefined){
+        return elm
+    }
     for (let [key, value] of Object.entries(attributes)) {
         if (value !== undefined) {
             if (key === 'innerText') elm.innerText = value;
