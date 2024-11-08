@@ -17,6 +17,7 @@ tr { background: #042c3f; }
 tr:nth-child(even) { background: #303030; }
 th:hover, tr:hover { background: #525252; }
 td, th { padding: 10px; vertical-align: top; border: 10px solid #ccc; border-style: hidden; } 
+.hidden-column { display: none; }
 
 /** Titres */
 h1 { font-size: 40px; font-style: normal; font-weight: bold; }

@@ -1,7 +1,7 @@
 function createEntireElement(element, attributes){
     let elm = document.createElement(element);
 
-    console.log(`Création de l'élément : ${element} avec les attributs : ${attributes}`);
+    // console.log(`Création de l'élément : ${element} avec les attributs : ${attributes}`);
 
     if (attributes === undefined){
         return elm
@@ -40,3 +40,27 @@ function createEntireElement(element, attributes){
 // document.body.appendChild(div);
 // document.body.appendChild(iptBtn);
 
+//!=============================|
+//!    Useless For the moment   |
+//!=============================|
+function setCookie(name, value, days){
+    let expires = "";
+    if(days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = `; expires=${date.toUTCString()}`;
+    }
+    document.cookie = `${name}=${encodeURIComponent(value) + expires}; path=/`;
+}
+
+function getCookie(name){
+    const nameEQ = `${name}=`;
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.indexOf(nameEQ) === 0){
+            return decodeURIComponent(cookie.substring(nameEQ.length));
+        }
+    }
+    return null;
+}
